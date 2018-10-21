@@ -1,0 +1,32 @@
+{
+  "name": "frameworkless-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/francesco-strazzullo/frameworkless-examples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/francesco-strazzullo/frameworkless-examples/issues"
+  },
+  "homepage": "https://github.com/francesco-strazzullo/frameworkless-examples#readme",
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.10.3",
+    "standard": "^12.0.1"
+  }
+}
