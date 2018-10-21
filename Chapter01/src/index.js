@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import './style.css'
 
-import PosedExample from './PosedExample'
+// import PosedExample from './PosedExample'
+import WebAnimationsExample from './WebAnimationsExample'
 
-render(<PosedExample />, document.getElementById('app'))
+render(<WebAnimationsExample />, document.getElementById('app'))
