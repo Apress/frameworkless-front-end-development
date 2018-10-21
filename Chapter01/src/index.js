@@ -1,12 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
+import './style.css'
 
-const App = () => {
-  return (
-    <div>
-      <h1>Hello Parcel</h1>
-    </div>
-  )
-}
+import PosedExample from './PosedExample'
 
-render(<App />, document.getElementById('app'))
+render(<PosedExample />, document.getElementById('app'))
