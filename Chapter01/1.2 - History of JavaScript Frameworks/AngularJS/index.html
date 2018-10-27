@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <title>AngularJS Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="app" ng-controller="ctrl">
+        Value: <input ng-model="value">
+        <h1>You entered: {{value}}</h1>
+    </div>
+    <script>
+        angular
+            .module('app', [])
+            .controller('ctrl', [
+                '$scope',
+                $scope => {
+                    $scope.value = 'initial value'
+                }
+            ]);
+    </script>
+</body>
+
+</html>
