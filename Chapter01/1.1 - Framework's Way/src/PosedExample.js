@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import posed from 'react-pose'
 
 const Box = posed.div({
@@ -10,7 +10,7 @@ const Box = posed.div({
   }
 })
 
-export default class PosedExample extends React.Component {
+class PosedExample extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -28,11 +28,14 @@ export default class PosedExample extends React.Component {
 
   render () {
     const { isVisible } = this.state
+    const pose = isVisible ? 'visible' : 'hidden'
     return (
       <div>
-        <Box className='box' pose={isVisible ? 'visible' : 'hidden'} />
+        <Box className='box' pose={pose} />
         <button onClick={this.toggle}>Toggle</button>
       </div>
     )
   }
 }
+
+export default PosedExample

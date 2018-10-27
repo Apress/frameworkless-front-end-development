@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 const animationTiming = {
   duration: 500,
@@ -11,9 +11,10 @@ const showKeyframes = [
   { opacity: 1 }
 ]
 
-const hideKeyframes = [...showKeyframes].reverse()
-
-export default class PosedExample extends React.Component {
+const hideKeyframes = [
+  ...showKeyframes
+].reverse()
+class PosedExample extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -45,3 +46,5 @@ export default class PosedExample extends React.Component {
     )
   }
 }
+
+export default PosedExample
