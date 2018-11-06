@@ -1,33 +1,29 @@
 {
-  "name": "frameworkless-examples",
+  "name": "temp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/francesco-strazzullo/frameworkless-examples.git"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start -p 8000",
+    "deploy": "now --public && now alias"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/francesco-strazzullo/frameworkless-examples/issues"
-  },
-  "homepage": "https://github.com/francesco-strazzullo/frameworkless-examples#readme",
   "dependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-pose": "^3.3.7"
+    "@zeit/next-css": "^1.0.1",
+    "next": "^7.0.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-pose": "^4.0.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "parcel-bundler": "^1.10.3",
+    "now": "^11.5.2",
     "standard": "^12.0.1"
+  },
+  "now":{
+    "alias": "frameworkless-examples-react-animations"
   }
 }

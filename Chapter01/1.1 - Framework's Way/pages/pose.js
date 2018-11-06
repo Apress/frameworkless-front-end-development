@@ -10,7 +10,7 @@ const Box = posed.div({
   }
 })
 
-class PosedExample extends Component {
+class PoseExample extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -38,4 +38,4 @@ class PosedExample extends Component {
   }
 }
 
-export default PosedExample
+export default PoseExample
