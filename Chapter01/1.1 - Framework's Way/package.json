@@ -1,17 +1,10 @@
 {
-  "name": "temp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start -p 8000",
     "deploy": "now --public && now alias"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "next": "^7.0.2",
