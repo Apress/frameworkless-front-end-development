@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "http-server"
+  },
+  "devDependencies": {
+    "http-server": "0.11.1",
+    "now": "11.5.2",
+    "standard": "12.0.1"
+  },
+  "now": {
+    "alias": "frameworkless-rendering-chapter"
+  }
+}
