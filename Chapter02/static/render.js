@@ -10,7 +10,4 @@ const getTodoElement = todo => {
         </li>`
 }
 
-export default (parent, todos) => {
-  const todosHtml = todos.map(getTodoElement).join('')
-  parent.innerHTML = todosHtml
-}
+export default todos => todos.map(getTodoElement).join('')

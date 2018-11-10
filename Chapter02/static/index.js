@@ -4,5 +4,5 @@ import render from './render.js'
 window.requestAnimationFrame(() => {
   const todos = getTodos()
   const list = document.querySelector('.todo-list')
-  render(list, todos)
+  list.innerHTML = render(todos)
 })
