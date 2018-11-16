@@ -1,17 +1,27 @@
 const getTodoElement = todo => {
-  const { text } = todo
-  return `<li>
-              <div class="view">
-                  <input class="toggle" type="checkbox">
-                  <label>${text}</label>
-                  <button class="destroy"></button>
-              </div>
-              <input class="edit" value="${text}">
-          </li>`
+  const {
+    text,
+    completed
+  } = todo
+
+  return `
+  <li ${completed ? 'class="completed"' : ''}>
+    <div class="view">
+      <input 
+        ${completed ? 'checked' : ''}
+        class="toggle" 
+        type="checkbox">
+      <label>${text}</label>
+      <button class="destroy"></button>
+    </div>
+    <input class="edit" value="${text}">
+  </li>`
 }
 
 const getTodoCount = todos => {
-  const { length } = todos
+  const notCompleted = todos.filter(todo => !todo.completed)
+
+  const { length } = notCompleted
   if (length === 1) {
     return '1 Item left'
   }
@@ -19,13 +29,13 @@ const getTodoCount = todos => {
   return `${length} Items left`
 }
 
-export default (base, state) => {
+export default (targetElement, state) => {
   const {
-    filter,
+    currentFilter,
     todos
   } = state
 
-  const element = base.cloneNode(true)
+  const element = targetElement.cloneNode(true)
 
   const list = element.querySelector('.todo-list')
   const counter = element.querySelector('.todo-count')
@@ -37,7 +47,7 @@ export default (base, state) => {
   Array
     .from(filters.querySelectorAll('li a'))
     .forEach(a => {
-      if (a.innerText === filter) {
+      if (a.innerText === currentFilter) {
         a.classList.add('selected')
       } else {
         a.classList.remove('selected')
