@@ -19,7 +19,8 @@ const getTodoElement = todo => {
 }
 
 const getTodoCount = todos => {
-  const notCompleted = todos.filter(todo => !todo.completed)
+  const notCompleted = todos
+    .filter(todo => !todo.completed)
 
   const { length } = notCompleted
   if (length === 1) {
