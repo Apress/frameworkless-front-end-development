@@ -1,17 +1,19 @@
+const { faker } = window
+
 const createElement = () => ({
-  text: 'Hello Frameworkless',
-  completed: Math.floor((Math.random() * 2) + 1) > 1
+  text: faker.random.words(2),
+  completed: faker.random.boolean()
 })
 
-const repeat = (factory, number) => {
+const repeat = (elementFactory, number) => {
   const array = []
   for (let index = 0; index < number; index++) {
-    array.push(factory(index))
+    array.push(elementFactory())
   }
   return array
 }
 
 export default () => {
-  const howMany = Math.floor((Math.random() * 10) + 1)
+  const howMany = faker.random.number(10)
   return repeat(createElement, howMany)
 }
