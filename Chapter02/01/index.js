@@ -3,7 +3,7 @@ import view from './view.js'
 
 const state = {
   todos: getTodos(),
-  currentFilter: 'Active'
+  currentFilter: 'All'
 }
 
 const main = document.querySelector('.todoapp')
