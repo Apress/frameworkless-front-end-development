@@ -43,12 +43,12 @@ export default (targetElement, state) => {
   const filters = element.querySelector('.filters')
 
   list.innerHTML = todos.map(getTodoElement).join('')
-  counter.innerText = getTodoCount(todos)
+  counter.textContent = getTodoCount(todos)
 
   Array
     .from(filters.querySelectorAll('li a'))
     .forEach(a => {
-      if (a.innerText === currentFilter) {
+      if (a.textContent === currentFilter) {
         a.classList.add('selected')
       } else {
         a.classList.remove('selected')
