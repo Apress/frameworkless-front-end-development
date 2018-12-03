@@ -1,4 +1,6 @@
 let panel
+let start
+let frames = 0
 
 const create = () => {
   const div = document.createElement('div')
@@ -13,9 +15,6 @@ const create = () => {
 
   return div
 }
-
-let start = window.performance.now()
-let frames = 0
 
 const tick = () => {
   frames++
@@ -32,6 +31,7 @@ const init = (parent = document.body) => {
   panel = create()
 
   window.requestAnimationFrame(() => {
+    start = window.performance.now()
     parent.appendChild(panel)
     tick()
   })

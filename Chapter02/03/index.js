@@ -2,6 +2,7 @@ import getTodos from './getTodos.js'
 import todosView from './view/todos.js'
 import counterView from './view/counter.js'
 import filtersView from './view/filters.js'
+
 import registry from './registry.js'
 
 registry.add('todos', todosView)
@@ -15,5 +16,5 @@ const state = {
 
 window.requestAnimationFrame(() => {
   const main = document.querySelector('.todoapp')
-  registry.render(main, state)
+  registry.boot(main, state)
 })

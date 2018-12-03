@@ -1,31 +1,44 @@
 const registry = {}
 
-const renderDecorator = component => (targetElement, state) => {
-  const element = component(targetElement, state)
+const renderWrapper = component => {
+  return (targetElement, state) => {
+    const element = component(targetElement, state)
 
-  Array
-    .from(element.querySelectorAll('[data-component]'))
-    .forEach(target => {
-      const componentName = target.dataset.component
-      const component = registry[componentName]
-      if (!component) {
-        return
-      }
+    const childComponents = element
+      .querySelectorAll('[data-component]')
 
-      target.replaceWith(component(target, state))
-    })
+    Array
+      .from(childComponents)
+      .forEach(target => {
+        const name = target
+          .dataset
+          .component
 
-  return element
+        const child = registry[name]
+        if (!child) {
+          return
+        }
+
+        target.replaceWith(child(target, state))
+      })
+
+    return element
+  }
 }
 
 const add = (name, component) => {
-  registry[name] = renderDecorator(component)
+  registry[name] = renderWrapper(component)
+}
+
+const boot = (root, state) => {
+  const cloneComponent = root => {
+    return root.cloneNode(true)
+  }
+  const newRoot = renderWrapper(cloneComponent)(root, state)
+  root.replaceWith(newRoot)
 }
 
 export default {
   add,
-  render: (root, state) => {
-    const newRoot = renderDecorator(root => root.cloneNode(true))(root, state)
-    root.replaceWith(newRoot)
-  }
+  boot
 }
