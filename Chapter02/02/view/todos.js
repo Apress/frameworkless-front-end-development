@@ -20,6 +20,9 @@ const getTodoElement = todo => {
 
 export default (targetElement, { todos }) => {
   const newTodoList = targetElement.cloneNode(true)
-  newTodoList.innerHTML = todos.map(getTodoElement).join('')
+  const todosElements = todos
+    .map(getTodoElement)
+    .join('')
+  newTodoList.innerHTML = todosElements
   return newTodoList
 }
