@@ -1,51 +1,65 @@
 const isNodeChanged = (node1, node2) => {
-  if (node1.attributes.length !== node2.attributes.length) {
+  const n1Attributes = node1.attributes
+  const n2Attributes = node2.attributes
+  if (n1Attributes.length !== n2Attributes.length) {
     return true
   }
 
-  const differentAttribute = Array.from(node1.attributes).find(attributeName => {
-    return node1.getAttribute(attributeName) !== node2.getAttribute(attributeName)
-  })
+  const differentAttribute = Array
+    .from(n1Attributes)
+    .find(attributeName => {
+      const attribute1 = node1
+        .getAttribute(attributeName)
+      const attribute2 = node2
+        .getAttribute(attributeName)
+
+      return attribute1 !== attribute2
+    })
 
   if (differentAttribute) {
     return true
   }
 
-  if (node1.children.length === 0 && node2.children.length === 0 && node1.textContent !== node2.textContent) {
+  if (node1.children.length === 0 &&
+    node2.children.length === 0 &&
+    node1.textContent !== node2.textContent) {
     return true
   }
 
   return false
 }
 
-const applyDiff = (parentNode, oldNode, newNode) => {
-  if (oldNode && !newNode) {
-    console.log('Removing', oldNode)
-    oldNode.remove()
+const applyDiff = (
+  parentNode,
+  realNode,
+  virtualNode) => {
+  if (realNode && !virtualNode) {
+    realNode.remove()
     return
   }
 
-  if (!oldNode && newNode) {
-    console.log('Adding', newNode)
-    parentNode.appendChild(newNode)
+  if (!realNode && virtualNode) {
+    parentNode.appendChild(virtualNode)
     return
   }
 
-  if (isNodeChanged(newNode, oldNode)) {
-    console.log('Replacing', newNode)
-    oldNode.replaceWith(newNode)
+  if (isNodeChanged(virtualNode, realNode)) {
+    realNode.replaceWith(virtualNode)
     return
   }
 
-  const oldChildren = Array.from(oldNode.children)
-  const newChildren = Array.from(newNode.children)
+  const realChildren = Array.from(realNode.children)
+  const virtualChildren = Array.from(virtualNode.children)
 
-  const max = Math.max(oldChildren.length, newChildren.length)
+  const max = Math.max(
+    realChildren.length,
+    virtualChildren.length
+  )
   for (let i = 0; i < max; i++) {
     applyDiff(
-      oldNode,
-      oldChildren[i],
-      newChildren[i]
+      realNode,
+      realChildren[i],
+      virtualChildren[i]
     )
   }
 }
