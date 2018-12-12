@@ -30,15 +30,15 @@ const add = (name, component) => {
   registry[name] = renderWrapper(component)
 }
 
-const boot = (root, state) => {
+const renderRoot = (root, state) => {
   const cloneComponent = root => {
     return root.cloneNode(true)
   }
-  const newRoot = renderWrapper(cloneComponent)(root, state)
-  root.replaceWith(newRoot)
+
+  return renderWrapper(cloneComponent)(root, state)
 }
 
 export default {
   add,
-  boot
+  renderRoot
 }
