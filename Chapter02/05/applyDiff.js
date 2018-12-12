@@ -19,15 +19,15 @@ const isNodeChanged = (node1, node2) => {
 }
 
 const applyDiff = (parentNode, oldNode, newNode) => {
-  if (!oldNode && newNode) {
-    console.log('Adding', newNode)
-    parentNode.appendChild(newNode)
-    return
-  }
-
   if (oldNode && !newNode) {
     console.log('Removing', oldNode)
     oldNode.remove()
+    return
+  }
+
+  if (!oldNode && newNode) {
+    console.log('Adding', newNode)
+    parentNode.appendChild(newNode)
     return
   }
 
