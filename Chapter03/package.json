@@ -16,7 +16,8 @@
       "expect",
       "test",
       "beforeEach",
-      "describe"
+      "describe",
+      "CustomEvent"
     ]
   }
 }
