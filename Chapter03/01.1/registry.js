@@ -1,8 +1,8 @@
 const registry = {}
 
 const renderWrapper = component => {
-  return (targetElement, state, events) => {
-    const element = component(targetElement, state, events)
+  return (targetElement, state) => {
+    const element = component(targetElement, state)
 
     const childComponents = element
       .querySelectorAll('[data-component]')
@@ -19,7 +19,7 @@ const renderWrapper = component => {
           return
         }
 
-        target.replaceWith(child(target, state, events))
+        target.replaceWith(child(target, state))
       })
 
     return element
@@ -30,12 +30,12 @@ const add = (name, component) => {
   registry[name] = renderWrapper(component)
 }
 
-const renderRoot = (root, state, events) => {
+const renderRoot = (root, state) => {
   const cloneComponent = root => {
     return root.cloneNode(true)
   }
 
-  return renderWrapper(cloneComponent)(root, state, events)
+  return renderWrapper(cloneComponent)(root, state)
 }
 
 export default {

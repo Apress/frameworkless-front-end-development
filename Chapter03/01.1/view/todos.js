@@ -8,7 +8,7 @@ const createNewTodoNode = () => {
   return template.content.firstElementChild.cloneNode(true)
 }
 
-const getTodoElement = (todo, deleteItem) => {
+const getTodoElement = todo => {
   const {
     text,
     completed
@@ -24,21 +24,16 @@ const getTodoElement = (todo, deleteItem) => {
     element.querySelector('input.toggle').checked = true
   }
 
-  // Events
-  element
-    .querySelector('button.destroy')
-    .addEventListener('click', deleteItem)
-
   return element
 }
 
-export default (targetElement, { todos }, events) => {
+export default (targetElement, { todos }) => {
   const newTodoList = targetElement.cloneNode(true)
 
   newTodoList.innerHTML = ''
 
   todos
-    .map(t => getTodoElement(t, events.deleteItem))
+    .map(getTodoElement)
     .forEach(element => {
       newTodoList.appendChild(element)
     })
