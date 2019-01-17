@@ -1,16 +1,19 @@
 let template
 
-const createNewTodoNode = () => {
+const createAppElement = () => {
   if (!template) {
     template = document.getElementById('todo-app')
   }
 
-  return template.content.firstElementChild.cloneNode(true)
+  return template
+    .content
+    .firstElementChild
+    .cloneNode(true)
 }
 
 export default (targetElement) => {
   const newApp = targetElement.cloneNode(true)
   newApp.innerHTML = ''
-  newApp.appendChild(createNewTodoNode())
+  newApp.appendChild(createAppElement())
   return newApp
 }

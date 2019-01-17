@@ -5,7 +5,10 @@ const createNewTodoNode = () => {
     template = document.getElementById('todo-item')
   }
 
-  return template.content.firstElementChild.cloneNode(true)
+  return template
+    .content
+    .firstElementChild
+    .cloneNode(true)
 }
 
 const getTodoElement = todo => {
@@ -20,8 +23,13 @@ const getTodoElement = todo => {
   element.querySelector('label').textContent = text
 
   if (completed) {
-    element.classList.add('completed')
-    element.querySelector('input.toggle').checked = true
+    element
+      .classList
+      .add('completed')
+
+    element
+      .querySelector('input.toggle')
+      .checked = true
   }
 
   return element
