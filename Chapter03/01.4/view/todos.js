@@ -45,7 +45,7 @@ export default (targetElement, state, events) => {
   newTodoList.innerHTML = ''
 
   todos
-    .map((todo, index) => getTodoElement(todo, index, events))
+    .map((todo, index) => getTodoElement(todo, index))
     .forEach(element => {
       newTodoList.appendChild(element)
     })
