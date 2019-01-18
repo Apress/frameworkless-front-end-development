@@ -5,7 +5,10 @@ const getTemplate = () => {
     template = document.getElementById('todo-app')
   }
 
-  return template.content.firstElementChild.cloneNode(true)
+  return template
+    .content
+    .firstElementChild
+    .cloneNode(true)
 }
 
 const addEvents = (targetElement, events) => {

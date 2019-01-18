@@ -5,7 +5,10 @@ const createNewTodoNode = () => {
     template = document.getElementById('todo-item')
   }
 
-  return template.content.firstElementChild.cloneNode(true)
+  return template
+    .content
+    .firstElementChild
+    .cloneNode(true)
 }
 
 const getTodoElement = (todo, index, events) => {
@@ -21,12 +24,16 @@ const getTodoElement = (todo, index, events) => {
 
   if (completed) {
     element.classList.add('completed')
-    element.querySelector('input.toggle').checked = true
+    element
+      .querySelector('input.toggle')
+      .checked = true
   }
+
+  const handler = e => events.deleteItem(index)
 
   element
     .querySelector('button.destroy')
-    .addEventListener('click', e => events.deleteItem(index))
+    .addEventListener('click', handler)
 
   return element
 }

@@ -33,7 +33,12 @@ const events = {
 const render = () => {
   window.requestAnimationFrame(() => {
     const main = document.querySelector('#root')
-    const newMain = registry.renderRoot(main, state, events)
+
+    const newMain = registry.renderRoot(
+      main,
+      state,
+      events)
+
     applyDiff(document.body, main, newMain)
   })
 }
