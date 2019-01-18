@@ -17,7 +17,8 @@ const isNodeChanged = (node1, node2) => {
     return true
   }
 
-  const differentAttribute = Array.from(n1Attributes)
+  const differentAttribute = Array
+    .from(n1Attributes)
     .find(attribute => {
       const { name } = attribute
       const attribute1 = node1
