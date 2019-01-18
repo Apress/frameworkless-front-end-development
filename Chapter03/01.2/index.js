@@ -1,4 +1,3 @@
-import getTodos from './getTodos.js'
 import todosView from './view/todos.js'
 import counterView from './view/counter.js'
 import filtersView from './view/filters.js'
@@ -13,17 +12,13 @@ registry.add('counter', counterView)
 registry.add('filters', filtersView)
 
 const state = {
-  todos: getTodos(),
+  todos: [],
   currentFilter: 'All'
 }
 
 const events = {
   deleteItem: (index) => {
     state.todos.splice(index, 1)
-    render()
-  },
-  toggleItemCompleted: (index) => {
-    state.todos[index].completed = !state.todos[index].completed
     render()
   },
   addItem: text => {

@@ -24,14 +24,9 @@ const getTodoElement = (todo, index, events) => {
     element.querySelector('input.toggle').checked = true
   }
 
-  // Events
   element
     .querySelector('button.destroy')
     .addEventListener('click', e => events.deleteItem(index))
-
-  element
-    .querySelector('input.toggle')
-    .addEventListener('click', e => events.toggleItemCompleted(index))
 
   return element
 }
