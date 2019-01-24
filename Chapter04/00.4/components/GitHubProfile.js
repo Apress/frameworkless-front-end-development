@@ -19,7 +19,6 @@ const getGitHubAvatarUrl = async user => {
 export default class GitHubProfile extends HTMLElement {
   constructor () {
     super()
-    this.loading = false
     this.url = LOADING_IMAGE
   }
 
@@ -46,8 +45,7 @@ export default class GitHubProfile extends HTMLElement {
       return
     }
     try {
-      const avatarUrl = await getGitHubAvatarUrl(user)
-      this.url = avatarUrl
+      this.url = await getGitHubAvatarUrl(user)
     } catch (e) {
       this.url = ERROR_IMAGE
     }
