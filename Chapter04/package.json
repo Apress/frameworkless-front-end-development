@@ -18,7 +18,8 @@
       "beforeEach",
       "describe",
       "CustomEvent",
-      "HTMLElement"
+      "HTMLElement",
+      "fetch"
     ]
   }
 }
