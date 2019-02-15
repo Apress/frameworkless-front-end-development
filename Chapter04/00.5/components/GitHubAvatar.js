@@ -1,5 +1,12 @@
 const ERROR_IMAGE = 'https://files-82ee7vgzc.now.sh'
 const LOADING_IMAGE = 'https://files-8bga2nnt0.now.sh'
+const AVATAR_LOAD_COMPLETE = 'AVATAR_LOAD_COMPLETE'
+const AVATAR_LOAD_ERROR = 'AVATAR_LOAD_ERROR'
+
+export const EVENTS = {
+  AVATAR_LOAD_COMPLETE,
+  AVATAR_LOAD_ERROR
+}
 
 const getGitHubAvatarUrl = async user => {
   if (!user) {
@@ -39,6 +46,26 @@ export default class GitHubAvatar extends HTMLElement {
     })
   }
 
+  onLoadAvatarComplete () {
+    const event = new CustomEvent(AVATAR_LOAD_COMPLETE, {
+      detail: {
+        avatar: this.url
+      }
+    })
+
+    this.dispatchEvent(event)
+  }
+
+  onLoadAvatarError (error) {
+    const event = new CustomEvent(AVATAR_LOAD_ERROR, {
+      detail: {
+        error
+      }
+    })
+
+    this.dispatchEvent(event)
+  }
+
   async loadNewAvatar () {
     const { user } = this
     if (!user) {
@@ -46,8 +73,10 @@ export default class GitHubAvatar extends HTMLElement {
     }
     try {
       this.url = await getGitHubAvatarUrl(user)
+      this.onLoadAvatarComplete()
     } catch (e) {
       this.url = ERROR_IMAGE
+      this.onLoadAvatarError(e)
     }
 
     this.render()
