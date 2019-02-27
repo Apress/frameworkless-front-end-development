@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "lodash.findindex": "^4.6.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
