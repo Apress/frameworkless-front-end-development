@@ -53,48 +53,53 @@ const request = params => new Promise((resolve, reject) => {
   xhr.onload = () => resolve(parseResponse(xhr))
 })
 
-const get = (url, headers) => {
-  return request({
+const get = async (url, headers) => {
+  const response = await request({
     url,
     headers,
     method: 'GET'
-  }).then(r => r.data)
+  })
+
+  return response.data
 }
 
-const post = (url, body, headers) => {
-  return request({
+const post = async (url, body, headers) => {
+  const response = await request({
     url,
     headers,
     method: 'POST',
     body
-  }).then(r => r.data)
+  })
+  return response.data
 }
 
-const put = (url, body, headers) => {
-  return request({
+const put = async (url, body, headers) => {
+  const response = await request({
     url,
     headers,
     method: 'PUT',
     body
-  }).then(r => r.data)
+  })
+  return response.data
 }
 
-const patch = (url, body, headers) => {
-  return request({
+const patch = async (url, body, headers) => {
+  const response = await request({
     url,
     headers,
     method: 'PATCH',
     body
-  }).then(r => r.data)
+  })
+  return response.data
 }
 
-const deleteRequest = (url, headers) => {
-  console.log('DELETE')
-  return request({
+const deleteRequest = async (url, headers) => {
+  const response = await request({
     url,
     headers,
     method: 'DELETE'
-  }).then(r => r.data)
+  })
+  return response.data
 }
 
 export default {

@@ -10,57 +10,49 @@ const printResult = (action, result) => {
     .appendChild(node)
 }
 
+const onListClick = async () => {
+  const result = await todos.list()
+  printResult('list todos', result)
+}
+
+const onAddClick = async () => {
+  const result = await todos.create('A simple todo Element')
+  printResult('add todo', result)
+}
+
+const onUpdateClick = async () => {
+  const list = await todos.list()
+
+  const { id } = list[0]
+  const newTodo = {
+    id,
+    completed: true
+  }
+
+  const result = await todos.update(newTodo)
+  printResult('update todo', result)
+}
+
+const onDeleteClick = async () => {
+  const list = await todos.list()
+  const { id } = list[0]
+
+  const result = await todos.delete(id)
+  printResult('delete todo', result)
+}
+
 document
   .querySelector('button[data-list]')
-  .addEventListener('click', () => {
-    todos
-      .list()
-      .then(result => {
-        printResult('list todos', result)
-      })
-  })
+  .addEventListener('click', onListClick)
 
 document
   .querySelector('button[data-add]')
-  .addEventListener('click', () => {
-    todos
-      .create('A simple todo Element')
-      .then(result => {
-        printResult('add todo', result)
-      })
-  })
+  .addEventListener('click', onAddClick)
 
 document
   .querySelector('button[data-update]')
-  .addEventListener('click', () => {
-    todos
-      .list()
-      .then(list => {
-        const { id } = list[0]
-        const newTodo = {
-          id,
-          completed: true
-        }
-
-        return todos
-          .update(newTodo)
-          .then(result => {
-            printResult('update todo', result)
-          })
-      })
-  })
+  .addEventListener('click', onUpdateClick)
 
 document
   .querySelector('button[data-delete]')
-  .addEventListener('click', () => {
-    todos
-      .list()
-      .then(list => {
-        const { id } = list[0]
-        return todos
-          .delete(id)
-          .then(result => {
-            printResult('delete todo', result)
-          })
-      })
-  })
+  .addEventListener('click', onDeleteClick)
