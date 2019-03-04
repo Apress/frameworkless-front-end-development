@@ -1,26 +1,8 @@
-const setHeaders = (xhr, headers) => {
-  Object.entries(headers).forEach(entry => {
-    const [
-      name,
-      value
-    ] = entry
-
-    xhr.setRequestHeader(
-      name,
-      value
-    )
-  })
-}
-
-const parseResponse = xhr => {
-  const {
-    status,
-    responseText
-  } = xhr
-
+const parseResponse = async response => {
+  const { status } = response
   let data
   if (status !== 204) {
-    data = JSON.parse(responseText)
+    data = await response.json()
   }
 
   return {
@@ -29,9 +11,7 @@ const parseResponse = xhr => {
   }
 }
 
-const request = params => new Promise((resolve, reject) => {
-  const xhr = new XMLHttpRequest()
-
+const request = async params => {
   const {
     method = 'GET',
     url,
@@ -39,17 +19,19 @@ const request = params => new Promise((resolve, reject) => {
     body
   } = params
 
-  xhr.open(method, url)
+  const config = {
+    method,
+    headers: new window.Headers(headers)
+  }
 
-  setHeaders(xhr, headers)
+  if (body) {
+    config.body = JSON.stringify(body)
+  }
 
-  xhr.send(JSON.stringify(body))
+  const response = await window.fetch(url, config)
 
-  xhr.onerror = () => reject(new Error('HTTP Error'))
-  xhr.ontimeout = () => reject(new Error('Timeout Error'))
-
-  xhr.onload = () => resolve(parseResponse(xhr))
-})
+  return parseResponse(response)
+}
 
 const get = async (url, headers) => {
   const response = await request({

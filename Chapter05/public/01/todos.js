@@ -32,7 +32,10 @@ const update = newTodo => {
 
 const deleteTodo = id => {
   const url = `${BASE_URL}/${id}`
-  return http.delete(url)
+  return http.delete(
+    url,
+    HEADERS
+  )
 }
 
 export default {
