@@ -15,7 +15,9 @@
   "standard": {
     "globals": [
       "XMLHttpRequest",
-      "fetch"
+      "fetch",
+      "Headers",
+      "axios"
     ]
   }
 }
