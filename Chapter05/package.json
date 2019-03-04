@@ -3,12 +3,19 @@
     "start": "nodemon server"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "lodash.findindex": "^4.6.0",
-    "uuid": "^3.3.2"
+    "body-parser": "1.18.3",
+    "express": "4.16.4",
+    "lodash.findindex": "4.6.0",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "1.18.10",
+    "standard": "12.0.1"
+  },
+  "standard": {
+    "globals": [
+      "XMLHttpRequest",
+      "fetch"
+    ]
   }
 }
