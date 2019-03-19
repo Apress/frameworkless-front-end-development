@@ -29,27 +29,34 @@ const parseResponse = xhr => {
   }
 }
 
-const request = params => new Promise((resolve, reject) => {
-  const xhr = new XMLHttpRequest()
+const request = params => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
 
-  const {
-    method = 'GET',
-    url,
-    headers = {},
-    body
-  } = params
+    const {
+      method = 'GET',
+      url,
+      headers = {},
+      body
+    } = params
 
-  xhr.open(method, url)
+    xhr.open(method, url)
 
-  setHeaders(xhr, headers)
+    setHeaders(xhr, headers)
 
-  xhr.send(JSON.stringify(body))
+    xhr.send(JSON.stringify(body))
 
-  xhr.onerror = () => reject(new Error('HTTP Error'))
-  xhr.ontimeout = () => reject(new Error('Timeout Error'))
+    xhr.onerror = () => {
+      reject(new Error('HTTP Error'))
+    }
 
-  xhr.onload = () => resolve(parseResponse(xhr))
-})
+    xhr.ontimeout = () => {
+      reject(new Error('Timeout Error'))
+    }
+
+    xhr.onload = () => resolve(parseResponse(xhr))
+  })
+}
 
 const get = async (url, headers) => {
   const response = await request({

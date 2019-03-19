@@ -21,14 +21,14 @@ const request = async params => {
 
   const config = {
     method,
-    headers: new Headers(headers)
+    headers: new window.Headers(headers)
   }
 
   if (body) {
     config.body = JSON.stringify(body)
   }
 
-  const response = await fetch(url, config)
+  const response = await window.fetch(url, config)
 
   return parseResponse(response)
 }

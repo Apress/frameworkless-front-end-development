@@ -1,5 +1,7 @@
 import todos from './todos.js'
 
+const NEW_TODO_TEXT = 'A simple todo Element'
+
 const printResult = (action, result) => {
   const time = (new Date()).toTimeString()
   const node = document.createElement('p')
@@ -16,7 +18,7 @@ const onListClick = async () => {
 }
 
 const onAddClick = async () => {
-  const result = await todos.create('A simple todo Element')
+  const result = await todos.create(NEW_TODO_TEXT)
   printResult('add todo', result)
 }
 
