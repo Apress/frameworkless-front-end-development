@@ -12,3 +12,11 @@ router
   .addRoute('#/list', pages.list)
   .setNotFound(pages.notFound)
   .start()
+
+document
+  .querySelectorAll('button[data-navigate]')
+  .forEach(b => {
+    b.addEventListener('click', (e) => {
+      router.navigate(b.dataset.navigate)
+    })
+  })
