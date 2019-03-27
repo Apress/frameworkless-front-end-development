@@ -1,18 +1,11 @@
 import createRouter from './router.js'
+import createPages from './pages.js'
+
+const container = document.querySelector('main')
+
+const pages = createPages(container)
 
 const router = createRouter()
-
-const indexPage = () => {
-  document
-    .querySelector('main')
-    .textContent = 'This is Index Page'
-}
-
-const listPage = () => {
-  document
-    .querySelector('main')
-    .textContent = 'This is List Page'
-}
 
 document
   .querySelectorAll('button[data-navigate]')
@@ -23,6 +16,7 @@ document
   })
 
 router
-  .addRoute('#/', indexPage)
-  .addRoute('#/list', listPage)
+  .addRoute('#/', pages.home)
+  .addRoute('#/list', pages.list)
+  .setNotFound(pages.notFound)
   .start()

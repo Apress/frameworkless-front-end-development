@@ -1,5 +1,7 @@
 export default () => {
   const routes = []
+  let notFound = () => {}
+
   const router = {}
 
   const checkRoutes = () => {
@@ -8,6 +10,7 @@ export default () => {
     })
 
     if (!currentRoute) {
+      notFound()
       return
     }
 
@@ -31,6 +34,11 @@ export default () => {
 
     checkRoutes()
 
+    return router
+  }
+
+  router.setNotFound = cb => {
+    notFound = cb
     return router
   }
 
