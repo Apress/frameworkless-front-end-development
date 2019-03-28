@@ -15,10 +15,14 @@ router
   .setNotFound(pages.notFound)
   .start()
 
+const NAV_BTN_SELECTOR = 'button[data-navigate]'
+
 document
-  .querySelectorAll('button[data-navigate]')
-  .forEach(b => {
-    b.addEventListener('click', (e) => {
-      router.navigate(b.dataset.navigate)
-    })
+  .body
+  .addEventListener('click', e => {
+    const { target } = e
+    if (target.matches(NAV_BTN_SELECTOR)) {
+      const { navigate } = target.dataset
+      router.navigate(navigate)
+    }
   })
