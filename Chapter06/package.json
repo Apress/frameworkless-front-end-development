@@ -1,23 +1,12 @@
 {
   "scripts": {
-    "start": "http-server",
-    "deploy": "now && now alias",
+    "start": "http-server & serve -p 8081 -s 01",
     "test": "jest"
   },
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
     "http-server": "0.11.1",
     "jest": "23.6.0",
-    "now": "12.0.1",
+    "serve": "10.1.2",
     "standard": "12.0.1"
-  },
-  "standard": {
-    "globals": [
-      "expect",
-      "test",
-      "beforeEach",
-      "describe",
-      "CustomEvent"
-    ]
   }
 }
