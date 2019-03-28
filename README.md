@@ -16,3 +16,12 @@ Release v1.0 corresponds to the code in the published book, without corrections 
 ## Contributions
 
 See the file Contributing.md for more information on how you can contribute to this repository.
+
+## Chapters
+
+### Chapter 1 - Let's Talk About Frameworks
+### Chapter 2 - Rendering
+### Chapter 3 - Managing DOM Events
+### Chapter 4 - Web Components
+### Chapter 5 - HTTP Requests
+### Chapter 6 - Routing
