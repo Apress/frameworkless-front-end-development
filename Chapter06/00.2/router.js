@@ -1,3 +1,6 @@
+const ROUTE_PARAMETER_REGEXP = /:(\w+)/g
+const URL_FRAGMENT_REGEXP = '([^\\/]+)'
+
 const extractUrlParams = (route, windowHash) => {
   if (route.params.length === 0) {
     return {}
@@ -6,7 +9,7 @@ const extractUrlParams = (route, windowHash) => {
   const params = {}
 
   const matches = windowHash
-    .match(new RegExp(`^${route.hash.replace(/\//g, '\\/')}$`))
+    .match(route.testRegExp)
 
   matches.shift()
 
@@ -24,18 +27,9 @@ export default () => {
 
   const router = {}
 
-  const ROUTE_PARAMETER_REGEXP = /:(\w+)/g
-  const URL_FRAGMENT_REGEXP = '([^\\/]+)'
-
   const checkRoutes = () => {
     const currentRoute = routes.find(route => {
-      if (route.params.length === 0) {
-        return route.hash === window.location.hash
-      }
-
-      const regExp = new RegExp(`^${route.hash.replace(/\//g, '\\/')}$`)
-
-      return regExp.test(window.location.hash)
+      return route.testRegExp.test(window.location.hash)
     })
 
     if (!currentRoute) {
@@ -55,10 +49,10 @@ export default () => {
       .replace(ROUTE_PARAMETER_REGEXP, (match, paramName) => {
         params.push(paramName)
         return URL_FRAGMENT_REGEXP
-      })
+      }).replace(/\//g, '\\/')
 
     routes.push({
-      hash: parsedHash,
+      testRegExp: new RegExp(`^${parsedHash}$`),
       callback,
       params
     })
