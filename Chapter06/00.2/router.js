@@ -60,6 +60,15 @@ export default () => {
     return router
   }
 
+  router.setNotFound = cb => {
+    notFound = cb
+    return router
+  }
+
+  router.navigate = hash => {
+    window.location.hash = hash
+  }
+
   router.start = () => {
     window.addEventListener('hashchange', checkRoutes)
     if (!window.location.hash) {
@@ -69,15 +78,6 @@ export default () => {
     checkRoutes()
 
     return router
-  }
-
-  router.setNotFound = cb => {
-    notFound = cb
-    return router
-  }
-
-  router.navigate = hash => {
-    window.location.hash = hash
   }
 
   return router

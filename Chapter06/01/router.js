@@ -69,12 +69,6 @@ export default () => {
     return router
   }
 
-  router.start = () => {
-    checkRoutes()
-    window.setInterval(checkRoutes, TICKTIME)
-    return router
-  }
-
   router.setNotFound = cb => {
     notFound = cb
     return router
@@ -82,6 +76,12 @@ export default () => {
 
   router.navigate = path => {
     window.history.pushState(null, null, path)
+  }
+
+  router.start = () => {
+    checkRoutes()
+    window.setInterval(checkRoutes, TICKTIME)
+    return router
   }
 
   return router

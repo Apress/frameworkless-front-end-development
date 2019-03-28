@@ -3,6 +3,18 @@ const URL_FRAGMENT_REGEXP = '([^\\/]+)'
 const NAV_A_SELECTOR = 'a[data-navigation]'
 const TICKTIME = 250
 
+const attachAnchorsHandler = navigate => {
+  document
+    .body
+    .addEventListener('click', e => {
+      const { target } = e
+      if (target.matches(NAV_A_SELECTOR)) {
+        e.preventDefault()
+        navigate(target.href)
+      }
+    })
+}
+
 const extractUrlParams = (route, pathname) => {
   if (route.params.length === 0) {
     return {}
@@ -70,23 +82,6 @@ export default () => {
     return router
   }
 
-  router.start = () => {
-    checkRoutes()
-    window.setInterval(checkRoutes, TICKTIME)
-
-    document
-      .body
-      .addEventListener('click', e => {
-        const { target } = e
-        if (target.matches(NAV_A_SELECTOR)) {
-          e.preventDefault()
-          router.navigate(target.href)
-        }
-      })
-
-    return router
-  }
-
   router.setNotFound = cb => {
     notFound = cb
     return router
@@ -94,6 +89,15 @@ export default () => {
 
   router.navigate = path => {
     window.history.pushState(null, null, path)
+  }
+
+  router.start = () => {
+    checkRoutes()
+    window.setInterval(checkRoutes, TICKTIME)
+
+    attachAnchorsHandler(router.navigate)
+
+    return router
   }
 
   return router
