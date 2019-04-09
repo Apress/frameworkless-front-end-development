@@ -42,17 +42,17 @@ export default () => {
     currentRoute.callback(urlParams)
   }
 
-  router.addRoute = (hash, callback) => {
+  router.addRoute = (fragment, callback) => {
     const params = []
 
-    const parsedHash = hash
+    const parsedFragment = fragment
       .replace(ROUTE_PARAMETER_REGEXP, (match, paramName) => {
         params.push(paramName)
         return URL_FRAGMENT_REGEXP
       }).replace(/\//g, '\\/')
 
     routes.push({
-      testRegExp: new RegExp(`^${parsedHash}$`),
+      testRegExp: new RegExp(`^${parsedFragment}$`),
       callback,
       params
     })
@@ -65,8 +65,8 @@ export default () => {
     return router
   }
 
-  router.navigate = hash => {
-    window.location.hash = hash
+  router.navigate = fragment => {
+    window.location.hash = fragment
   }
 
   router.start = () => {

@@ -6,7 +6,7 @@ export default () => {
 
   const checkRoutes = () => {
     const currentRoute = routes.find(route => {
-      return route.hash === window.location.hash
+      return route.fragment === window.location.hash
     })
 
     if (!currentRoute) {
@@ -17,9 +17,9 @@ export default () => {
     currentRoute.callback()
   }
 
-  router.addRoute = (hash, callback) => {
+  router.addRoute = (fragment, callback) => {
     routes.push({
-      hash,
+      fragment,
       callback
     })
 
