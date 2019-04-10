@@ -14,13 +14,13 @@ export default () => {
       return
     }
 
-    currentRoute.callback()
+    currentRoute.component()
   }
 
-  router.addRoute = (fragment, callback) => {
+  router.addRoute = (fragment, component) => {
     routes.push({
       fragment,
-      callback
+      component
     })
 
     return router
@@ -36,14 +36,13 @@ export default () => {
   }
 
   router.start = () => {
-    window.addEventListener('hashchange', checkRoutes)
+    window
+      .addEventListener('hashchange', checkRoutes)
     if (!window.location.hash) {
       window.location.hash = '#/'
     }
 
     checkRoutes()
-
-    return router
   }
 
   return router

@@ -39,10 +39,10 @@ export default () => {
 
     const urlParams = extractUrlParams(currentRoute, window.location.hash)
 
-    currentRoute.callback(urlParams)
+    currentRoute.component(urlParams)
   }
 
-  router.addRoute = (fragment, callback) => {
+  router.addRoute = (fragment, component) => {
     const params = []
 
     const parsedFragment = fragment
@@ -53,7 +53,7 @@ export default () => {
 
     routes.push({
       testRegExp: new RegExp(`^${parsedFragment}$`),
-      callback,
+      component,
       params
     })
 
@@ -70,14 +70,13 @@ export default () => {
   }
 
   router.start = () => {
-    window.addEventListener('hashchange', checkRoutes)
+    window
+      .addEventListener('hashchange', checkRoutes)
     if (!window.location.hash) {
       window.location.hash = '#/'
     }
 
     checkRoutes()
-
-    return router
   }
 
   return router
