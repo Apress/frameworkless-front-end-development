@@ -3,11 +3,11 @@ const URL_FRAGMENT_REGEXP = '([^\\/]+)'
 const TICKTIME = 250
 
 const extractUrlParams = (route, pathname) => {
-  if (route.params.length === 0) {
-    return {}
-  }
-
   const params = {}
+
+  if (route.params.length === 0) {
+    return params
+  }
 
   const matches = pathname
     .match(route.testRegExp)
@@ -38,7 +38,8 @@ export default () => {
     lastPathname = pathname
 
     const currentRoute = routes.find(route => {
-      return route.testRegExp.test(pathname)
+      const { testRegExp } = route
+      return testRegExp.test(pathname)
     })
 
     if (!currentRoute) {
@@ -55,10 +56,13 @@ export default () => {
     const params = []
 
     const parsedPath = path
-      .replace(ROUTE_PARAMETER_REGEXP, (match, paramName) => {
-        params.push(paramName)
-        return URL_FRAGMENT_REGEXP
-      }).replace(/\//g, '\\/')
+      .replace(
+        ROUTE_PARAMETER_REGEXP,
+        (match, paramName) => {
+          params.push(paramName)
+          return URL_FRAGMENT_REGEXP
+        })
+      .replace(/\//g, '\\/')
 
     routes.push({
       testRegExp: new RegExp(`^${parsedPath}$`),
@@ -75,13 +79,14 @@ export default () => {
   }
 
   router.navigate = path => {
-    window.history.pushState(null, null, path)
+    window
+      .history
+      .pushState(null, null, path)
   }
 
   router.start = () => {
     checkRoutes()
     window.setInterval(checkRoutes, TICKTIME)
-    return router
   }
 
   return router

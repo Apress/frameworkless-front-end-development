@@ -18,7 +18,10 @@ export default container => {
   const anotherDetail = (params) => {
     const { id, anotherId } = params
     container
-      .textContent = `This is Detail Page with Id ${id} and AnotherId ${anotherId}`
+      .textContent = `
+        This is Detail Page with Id ${id} 
+        and AnotherId ${anotherId}
+      `
   }
 
   const notFound = () => {
