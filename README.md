@@ -25,3 +25,4 @@ See the file Contributing.md for more information on how you can contribute to t
 ### [Chapter 4 - Web Components](https://github.com/francesco-strazzullo/frameworkless-examples/tree/master/Chapter04)
 ### [Chapter 5 - HTTP Requests](https://github.com/francesco-strazzullo/frameworkless-examples/tree/master/Chapter05)
 ### [Chapter 6 - Routing](https://github.com/francesco-strazzullo/frameworkless-examples/tree/master/Chapter06)
+### [Chapter 7 - State Management](https://github.com/francesco-strazzullo/frameworkless-examples/tree/master/Chapter07)
