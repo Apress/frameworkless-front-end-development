@@ -7,7 +7,6 @@
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
     "http-server": "0.11.1",
     "jest": "23.6.0",
-    "lodash": "4.17.11",
     "standard": "12.0.1"
   },
   "standard": {
@@ -15,13 +14,7 @@
       "expect",
       "test",
       "beforeEach",
-      "describe",
-      "_"
-    ]
-  },
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/test-setup.js"
+      "describe"
     ]
   }
 }
