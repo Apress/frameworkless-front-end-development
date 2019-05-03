@@ -26,4 +26,3 @@ const render = () => {
 }
 
 render()
-
