@@ -4,10 +4,10 @@ const INITIAL_STATE = {
 }
 
 export default (initalState = INITIAL_STATE) => {
-  const state = { ...initalState }
+  const state = _.cloneDeep(initalState)
 
   const get = () => {
-    return Object.freeze({ ...state })
+    return Object.freeze(_.cloneDeep(state))
   }
 
   const addItem = text => {
