@@ -1,6 +1,14 @@
 import stateFactory from './state.js'
 
-describe('stateFactory', () => {
+describe('external state', () => {
+  test('data should be immutable', () => {
+    const state = stateFactory()
+
+    expect(() => {
+      state.get().currentFilter = 'WRONG'
+    }).toThrow()
+  })
+
   test('should add an item', () => {
     const state = stateFactory()
 
