@@ -1,17 +1,12 @@
-import observableFactory from './observableFactory.js'
+import observableFactory from './observable.js'
 
 let observable
-let state
-const actions = {
-  aDummySetter: data => {
-    state = data
-  }
-}
 
-describe('observable factory', () => {
+describe('observable factory with proxy', () => {
   beforeEach(() => {
-    state = {}
-    observable = observableFactory(actions, () => state)
+    observable = observableFactory({
+      property: 'value'
+    })
   })
 
   test('listeners should be invoked immediatly', () => {
@@ -27,7 +22,7 @@ describe('observable factory', () => {
     observable.addChangeListener(data => {
       counter++
     })
-    observable.aDummySetter('Solid Snake')
+    observable.property = 'another value'
     expect(counter).toBe(2)
   })
 
@@ -37,17 +32,14 @@ describe('observable factory', () => {
       counter++
     })
     unsubscribe()
-    observable.aDummySetter('Solid Snake')
+    observable.property = 'another value'
     expect(counter).toBe(1)
   })
 
-  test('state should be immutable', () => {
-    observable.aDummySetter({
-      name: 'Solid Snake'
-    })
+  test('in listeners state should be immutable', () => {
     observable.addChangeListener(data => {
       expect(() => {
-        data.name = 'Liquid Snake'
+        data.property = 'another value'
       }).toThrow()
     })
   })

@@ -1,26 +1,13 @@
-import observableFactory from './observable.js'
-
-const cloneDeep = x => {
-  return JSON.parse(JSON.stringify(x))
-}
-
-const INITIAL_STATE = {
-  todos: [],
-  currentFilter: 'All'
-}
-
-export default (initalState = INITIAL_STATE) => {
-  const state = cloneDeep(initalState)
-
+export default state => {
   const addItem = text => {
     if (!text) {
       return
     }
 
-    state.todos.push({
+    state.todos = [...state.todos, {
       text,
       completed: false
-    })
+    }]
   }
 
   const updateItem = (index, text) => {
@@ -36,7 +23,12 @@ export default (initalState = INITIAL_STATE) => {
       return
     }
 
-    state.todos[index].text = text
+    state.todos = state.todos.map((todo, i) => {
+      if (i === index) {
+        todo.text = text
+      }
+      return todo
+    })
   }
 
   const deleteItem = index => {
@@ -48,7 +40,7 @@ export default (initalState = INITIAL_STATE) => {
       return
     }
 
-    state.todos.splice(index, 1)
+    state.todos = state.todos.filter((todo, i) => i !== index)
   }
 
   const toggleItemCompleted = index => {
@@ -60,12 +52,18 @@ export default (initalState = INITIAL_STATE) => {
       return
     }
 
-    state.todos[index].completed = !state.todos[index].completed
+    state.todos = state.todos.map((todo, i) => {
+      if (i === index) {
+        todo.completed = !todo.completed
+      }
+      return todo
+    })
   }
 
   const completeAll = () => {
-    state.todos.forEach(t => {
-      t.completed = true
+    state.todos = state.todos.map((todo, i) => {
+      todo.completed = true
+      return todo
     })
   }
 
@@ -77,7 +75,7 @@ export default (initalState = INITIAL_STATE) => {
     state.currentFilter = filter
   }
 
-  const actions = {
+  return {
     addItem,
     updateItem,
     deleteItem,
@@ -86,6 +84,4 @@ export default (initalState = INITIAL_STATE) => {
     clearCompleted,
     changeFilter
   }
-
-  return observableFactory(actions, () => state)
 }
