@@ -1,4 +1,4 @@
-import eventTypes from '../model/eventTypes.js'
+import eventCreators from '../model/eventCreators.js'
 
 let template
 
@@ -27,7 +27,7 @@ const addEvents = (targetElement, dispatch) => {
     .querySelector('.new-todo')
     .addEventListener('keypress', e => {
       if (e.key === 'Enter') {
-        dispatch(eventTypes.ADD_ITEM, e.target.value)
+        dispatch(eventCreators.addItem(e.target.value))
         e.target.value = ''
       }
     })
@@ -35,13 +35,13 @@ const addEvents = (targetElement, dispatch) => {
   targetElement
     .querySelector('input.toggle-all')
     .addEventListener('click', () => {
-      dispatch(eventTypes.COMPLETE_ALL)
+      dispatch(eventCreators.completeAll())
     })
 
   targetElement
     .querySelector('.clear-completed')
     .addEventListener('click', () => {
-      dispatch(eventTypes.CLEAR_COMPLETED)
+      dispatch(eventCreators.clearCompleted())
     })
 }
 

@@ -1,4 +1,4 @@
-import eventTypes from '../model/eventTypes.js'
+import eventCreators from '../model/eventCreators.js'
 
 let template
 
@@ -14,18 +14,12 @@ const createNewTodoNode = () => {
 }
 
 const attachEventsToTodoElement = (element, index, dispatch) => {
-  const deleteHandler = e => dispatch(eventTypes.DELETE_ITEM, index)
-  const toggleHandler = e => dispatch(eventTypes.TOGGLE_COMPLETED, index)
+  const deleteHandler = e => dispatch(eventCreators.deleteItem(index))
+  const toggleHandler = e => dispatch(eventCreators.toggleItemCompleted(index))
   const updateHandler = e => {
     if (e.key === 'Enter') {
       element.classList.remove('editing')
-
-      const payload = {
-        index,
-        text: e.target.value
-      }
-
-      dispatch(eventTypes.UPDATE_ITEM, payload)
+      dispatch(eventCreators.updateItem(index, e.target.value))
     }
   }
 

@@ -121,7 +121,7 @@ const modifiers = {
 
 export default (initalState = INITIAL_STATE) => {
   return (prevState, event) => {
-    if (!event) {
+    if (!prevState) {
       return cloneDeep(initalState)
     }
 

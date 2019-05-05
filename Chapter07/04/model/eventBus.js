@@ -21,12 +21,7 @@ export default (modifiers) => {
     listeners.forEach(l => l(data))
   }
 
-  const dispatch = (type, payload) => {
-    const event = {
-      type,
-      payload
-    }
-
+  const dispatch = event => {
     const newState = modifiers(state, event)
 
     if (!newState) {
