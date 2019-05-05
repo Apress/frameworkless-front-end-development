@@ -21,7 +21,7 @@ export default {
     }
   }),
   deleteItem: index => ({
-    type: EVENT_TYPES.ADD_ITEM,
+    type: EVENT_TYPES.DELETE_ITEM,
     payload: index
   }),
   toggleItemCompleted: index => ({

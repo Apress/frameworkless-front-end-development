@@ -38,7 +38,7 @@ const deleteItem = (state, event) => {
     return state
   }
 
-  if (!state.todos[index]) {
+  if (!state[index]) {
     return state
   }
 

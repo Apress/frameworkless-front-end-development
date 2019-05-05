@@ -14,7 +14,7 @@ const createNewTodoNode = () => {
 }
 
 const attachEventsToTodoElement = (element, index, dispatch) => {
-  const deleteHandler = e => dispatch(eventCreators.deleteItem(index))
+  const deleteHandler = e => dispatch(eventCreators.deleteItem(parseInt(index)))
   const toggleHandler = e => dispatch(eventCreators.toggleItemCompleted(index))
   const updateHandler = e => {
     if (e.key === 'Enter') {
