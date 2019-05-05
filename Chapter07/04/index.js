@@ -6,30 +6,48 @@ import applyDiff from './applyDiff.js'
 
 import registry from './registry.js'
 
-import eventBusFactory from './model/eventBus.js'
-import modifiersFactory from './model/modifiers.js'
+import todosReducer from './model/todos.js'
+import filterReducer from './model/filter.js'
 
 registry.add('app', appView)
 registry.add('todos', todosView)
 registry.add('counter', counterView)
 registry.add('filters', filtersView)
 
-const modifiers = modifiersFactory()
-const eventBus = eventBusFactory(modifiers)
+const INITIAL_STATE = {
+  todos: [],
+  currentFilter: 'All'
+}
 
-const render = (state) => {
+const {
+  createStore,
+  combineReducers
+} = Redux
+
+const reducer = combineReducers({
+  todos: todosReducer,
+  currentFilter: filterReducer
+})
+
+const store = createStore(
+  reducer,
+  INITIAL_STATE,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
+const render = () => {
   window.requestAnimationFrame(() => {
     const main = document.querySelector('#root')
 
     const newMain = registry.renderRoot(
       main,
-      state,
-      eventBus.dispatch)
+      store.getState(),
+      store.dispatch)
 
     applyDiff(document.body, main, newMain)
   })
 }
 
-eventBus.subscribe(render)
+store.subscribe(render)
 
-render(eventBus.getState())
+render()

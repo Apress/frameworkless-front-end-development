@@ -5,31 +5,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-common@1.0.5/base.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-app-css@2.1.2/index.css">
     <title>
-        Frameworkless Frontend Development: Web Components
+        Frameworkless Frontend Development: State Management
     </title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <template id="footer">
-        <footer class="footer">
-            <span class="todo-count">
-            </span>
-            <ul class="filters">
-                <li>
-                    <a href="#/">All</a>
-                </li>
-                <li>
-                    <a href="#/active">Active</a>
-                </li>
-                <li>
-                    <a href="#/completed">Completed</a>
-                </li>
-            </ul>
-            <button class="clear-completed">
-                Clear completed
-            </button>
-        </footer>
-    </template>
     <template id="todo-item">
         <li>
             <div class="view">
@@ -51,12 +36,32 @@
                 <label for="toggle-all">
                     Mark all as complete
                 </label>
-                <todomvc-list></todomvc-list>
+                <ul class="todo-list" data-component="todos">
+                </ul>
             </section>
-            <todomvc-footer></todomvc-footer>
+            <footer class="footer">
+                <span class="todo-count" data-component="counter">
+                </span>
+                <ul class="filters" data-component="filters">
+                    <li>
+                        <a href="#/">All</a>
+                    </li>
+                    <li>
+                        <a href="#/active">Active</a>
+                    </li>
+                    <li>
+                        <a href="#/completed">Completed</a>
+                    </li>
+                </ul>
+                <button class="clear-completed">
+                    Clear completed
+                </button>
+            </footer>
         </section>
     </template>
-    <todomvc-app></todomvc-app>
+    <div id="root">
+        <div data-component="app"></div>
+    </div>
     <footer class="info">
         <p>Double-click to edit a todo</p>
         <p>Created by <a href="http://twitter.com/thestrazz86">Francesco Strazzullo</a></p>

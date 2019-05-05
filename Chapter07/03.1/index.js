@@ -1,23 +1,35 @@
-import Application from './components/Application.js'
-import Footer from './components/Footer.js'
-import List from './components/List.js'
+import todosView from './view/todos.js'
+import counterView from './view/counter.js'
+import filtersView from './view/filters.js'
+import appView from './view/app.js'
+import applyDiff from './applyDiff.js'
 
-import observableFactory from './model/observable.js'
-import actionsFactory from './model/actions.js'
+import registry from './registry.js'
 
-const INITIAL_STATE = {
-  todos: [],
-  currentFilter: 'All'
+import eventBusFactory from './model/eventBus.js'
+import modifiersFactory from './model/modifiers.js'
+
+registry.add('app', appView)
+registry.add('todos', todosView)
+registry.add('counter', counterView)
+registry.add('filters', filtersView)
+
+const modifiers = modifiersFactory()
+const eventBus = eventBusFactory(modifiers)
+
+const render = (state) => {
+  window.requestAnimationFrame(() => {
+    const main = document.querySelector('#root')
+
+    const newMain = registry.renderRoot(
+      main,
+      state,
+      eventBus.dispatch)
+
+    applyDiff(document.body, main, newMain)
+  })
 }
 
-const observableState = observableFactory(INITIAL_STATE)
-const actions = actionsFactory(observableState)
+eventBus.subscribe(render)
 
-window.applicationContext = Object.freeze({
-  observableState,
-  actions
-})
-
-window.customElements.define('todomvc-app', Application)
-window.customElements.define('todomvc-footer', Footer)
-window.customElements.define('todomvc-list', List)
+render(eventBus.getState())

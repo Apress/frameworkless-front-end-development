@@ -1,4 +1,4 @@
-import eventCreators from '../model/eventCreators.js'
+import actionCreators from '../model/actionCreators.js'
 
 export default (targetElement, { currentFilter }, dispatch) => {
   const newFilters = targetElement.cloneNode(true)
@@ -14,7 +14,7 @@ export default (targetElement, { currentFilter }, dispatch) => {
 
       a.addEventListener('click', e => {
         e.preventDefault()
-        dispatch(eventCreators.changeFilter(a.textContent))
+        dispatch(actionCreators.changeFilter(a.textContent))
       })
     })
 
