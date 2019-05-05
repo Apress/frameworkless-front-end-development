@@ -16,7 +16,8 @@
       "beforeEach",
       "describe",
       "HTMLElement",
-      "CustomEvent"
+      "CustomEvent",
+      "Redux"
     ]
   }
 }
