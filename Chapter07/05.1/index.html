@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-common@1.0.5/base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-app-css@2.1.2/index.css">
+    <title>
+        Frameworkless Frontend Development: Web Components
+    </title>
+</head>
+
+<body>
+    <template id="footer">
+        <footer class="footer">
+            <span class="todo-count">
+            </span>
+            <ul class="filters">
+                <li>
+                    <a href="#/">All</a>
+                </li>
+                <li>
+                    <a href="#/active">Active</a>
+                </li>
+                <li>
+                    <a href="#/completed">Completed</a>
+                </li>
+            </ul>
+            <button class="clear-completed">
+                Clear completed
+            </button>
+        </footer>
+    </template>
+    <template id="todo-item">
+        <li>
+            <div class="view">
+                <input class="toggle" type="checkbox">
+                <label></label>
+                <button class="destroy"></button>
+            </div>
+            <input class="edit">
+        </li>
+    </template>
+    <template id="todo-app">
+        <section class="todoapp">
+            <header class="header">
+                <h1>todos</h1>
+                <input class="new-todo" placeholder="What needs to be done?" autofocus>
+            </header>
+            <section class="main">
+                <input id="toggle-all" class="toggle-all" type="checkbox">
+                <label for="toggle-all">
+                    Mark all as complete
+                </label>
+                <todomvc-list></todomvc-list>
+            </section>
+            <todomvc-footer></todomvc-footer>
+        </section>
+    </template>
+    <todomvc-app></todomvc-app>
+    <footer class="info">
+        <p>Double-click to edit a todo</p>
+        <p>Created by <a href="http://twitter.com/thestrazz86">Francesco Strazzullo</a></p>
+        <p>Thanks to <a href="http://todomvc.com">TodoMVC</a></p>
+    </footer>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>

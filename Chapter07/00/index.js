@@ -6,43 +6,43 @@ import applyDiff from './applyDiff.js'
 
 import registry from './registry.js'
 
-import stateFactory from './model/state.js'
+import modelFactory from './model/model.js'
 
 registry.add('app', appView)
 registry.add('todos', todosView)
 registry.add('counter', counterView)
 registry.add('filters', filtersView)
 
-const state = stateFactory()
+const model = modelFactory()
 
 const events = {
   addItem: text => {
-    state.addItem(text)
-    render(state.get())
+    model.addItem(text)
+    render(model.getState())
   },
   updateItem: (index, text) => {
-    state.updateItem(index, text)
-    render(state.get())
+    model.updateItem(index, text)
+    render(model.getState())
   },
   deleteItem: (index) => {
-    state.deleteItem(index)
-    render(state.get())
+    model.deleteItem(index)
+    render(model.getState())
   },
   toggleItemCompleted: (index) => {
-    state.toggleItemCompleted(index)
-    render(state.get())
+    model.toggleItemCompleted(index)
+    render(model.getState())
   },
   completeAll: () => {
-    state.completeAll()
-    render(state.get())
+    model.completeAll()
+    render(model.getState())
   },
   clearCompleted: () => {
-    state.clearCompleted()
-    render(state.get())
+    model.clearCompleted()
+    render(model.getState())
   },
   changeFilter: filter => {
-    state.changeFilter(filter)
-    render(state.get())
+    model.changeFilter(filter)
+    render(model.getState())
   }
 }
 
@@ -59,4 +59,4 @@ const render = (state) => {
   })
 }
 
-render(state.get())
+render(model.getState())

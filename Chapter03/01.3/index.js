@@ -33,7 +33,10 @@ const events = {
     render()
   },
   toggleItemCompleted: (index) => {
-    state.todos[index].completed = !state.todos[index].completed
+    const {
+      completed
+    } = state.todos[index]
+    state.todos[index].completed = !completed
     render()
   },
   completeAll: () => {
@@ -43,7 +46,9 @@ const events = {
     render()
   },
   clearCompleted: () => {
-    state.todos = state.todos.filter(t => !t.completed)
+    state.todos = state.todos.filter(
+      t => !t.completed
+    )
     render()
   },
   changeFilter: filter => {
