@@ -6,19 +6,19 @@ import applyDiff from './applyDiff.js'
 
 import registry from './registry.js'
 
-import stateFactory from './model/state.js'
+import modelFactory from './model/model.js'
 
 registry.add('app', appView)
 registry.add('todos', todosView)
 registry.add('counter', counterView)
 registry.add('filters', filtersView)
 
-const state = stateFactory()
+const model = modelFactory()
 
 const {
   addChangeListener,
   ...events
-} = state
+} = model
 
 const render = (state) => {
   window.requestAnimationFrame(() => {
