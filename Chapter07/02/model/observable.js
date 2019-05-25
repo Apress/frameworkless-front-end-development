@@ -4,47 +4,45 @@ const cloneDeep = x => {
 
 const freeze = state => Object.freeze(cloneDeep(state))
 
-export default (actions, getStateThunk) => {
+export default (model, stateGetter) => {
   let listeners = []
 
   const addChangeListener = cb => {
     listeners.push(cb)
-    cb(freeze(getStateThunk()))
+    cb(freeze(stateGetter()))
     return () => {
-      listeners = listeners.filter(element => element !== cb)
+      listeners = listeners
+        .filter(element => element !== cb)
     }
   }
 
   const invokeListeners = () => {
-    const data = freeze(getStateThunk())
+    const data = freeze(stateGetter())
     listeners.forEach(l => l(data))
   }
 
-  const createProxyObject = target => {
-    const proxy = {}
-
-    Object.keys(target).forEach(methodName => {
-      const value = target[methodName]
-      if (typeof value === 'function') {
-        proxy[methodName] = (...args) => {
-          const value = target[methodName](...args)
-          invokeListeners()
-          return value
-        }
-        return
-      }
-
-      if (typeof value === 'object') {
-        proxy[methodName] = createProxyObject(value)
-      }
-    })
-
-    return proxy
+  const wrapAction = originalAction => {
+    return (...args) => {
+      const value = originalAction(...args)
+      invokeListeners()
+      return value
+    }
   }
 
-  const proxy = createProxyObject(actions)
+  const baseProxy = {
+    addChangeListener
+  }
 
-  proxy.addChangeListener = addChangeListener
-
-  return proxy
+  return Object
+    .keys(model)
+    .filter(key => {
+      return typeof model[key] === 'function'
+    })
+    .reduce((proxy, key) => {
+      const action = model[key]
+      return {
+        ...proxy,
+        [key]: wrapAction(action)
+      }
+    }, baseProxy)
 }

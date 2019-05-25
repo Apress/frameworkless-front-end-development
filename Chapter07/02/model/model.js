@@ -77,7 +77,7 @@ export default (initalState = INITIAL_STATE) => {
     state.currentFilter = filter
   }
 
-  const actions = {
+  const model = {
     addItem,
     updateItem,
     deleteItem,
@@ -87,5 +87,5 @@ export default (initalState = INITIAL_STATE) => {
     changeFilter
   }
 
-  return observableFactory(actions, () => state)
+  return observableFactory(model, () => state)
 }
