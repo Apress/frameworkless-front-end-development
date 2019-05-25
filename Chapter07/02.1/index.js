@@ -6,21 +6,14 @@ import applyDiff from './applyDiff.js'
 
 import registry from './registry.js'
 
-import observableFactory from './model/observable.js'
-import actionsFactory from './model/actions.js'
-
-const INITIAL_STATE = {
-  todos: [],
-  currentFilter: 'All'
-}
+import actionsFactory from './model/model.js'
 
 registry.add('app', appView)
 registry.add('todos', todosView)
 registry.add('counter', counterView)
 registry.add('filters', filtersView)
 
-const observableState = observableFactory(INITIAL_STATE)
-const actions = actionsFactory(observableState)
+const actions = actionsFactory()
 
 const render = (state) => {
   window.requestAnimationFrame(() => {
@@ -35,4 +28,4 @@ const render = (state) => {
   })
 }
 
-observableState.addChangeListener(render)
+actions.addChangeListener(render)

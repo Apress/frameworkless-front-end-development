@@ -1,4 +1,13 @@
-export default state => {
+import observableFactory from './observable.js'
+
+const INITIAL_STATE = {
+  todos: [],
+  currentFilter: 'All'
+}
+
+export default (initialState = INITIAL_STATE) => {
+  const state = observableFactory(initialState)
+
   const addItem = text => {
     if (!text) {
       return
@@ -76,6 +85,7 @@ export default state => {
   }
 
   return {
+    addChangeListener: state.addChangeListener,
     addItem,
     updateItem,
     deleteItem,
