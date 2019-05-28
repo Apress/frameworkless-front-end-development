@@ -19,7 +19,7 @@ export default (initialState) => {
     listeners.push(cb)
     cb(freeze(proxy))
     return () => {
-      listeners = listeners.filter(element => element !== cb)
+      listeners = listeners.filter(l => l !== cb)
     }
   }
 
