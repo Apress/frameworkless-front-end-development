@@ -7,14 +7,14 @@ import applyDiff from './applyDiff.js'
 import registry from './registry.js'
 
 import eventBusFactory from './model/eventBus.js'
-import modifiersFactory from './model/modifiers.js'
+import modelFactory from './model/model.js'
 
 registry.add('app', appView)
 registry.add('todos', todosView)
 registry.add('counter', counterView)
 registry.add('filters', filtersView)
 
-const modifiers = modifiersFactory()
+const modifiers = modelFactory()
 const eventBus = eventBusFactory(modifiers)
 
 const render = (state) => {

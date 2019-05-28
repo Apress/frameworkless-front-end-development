@@ -4,9 +4,9 @@ const cloneDeep = x => {
 
 const freeze = state => Object.freeze(cloneDeep(state))
 
-export default (modifiers) => {
+export default (model) => {
   let listeners = []
-  let state = modifiers()
+  let state = model()
 
   const subscribe = listener => {
     listeners.push(listener)
@@ -22,7 +22,7 @@ export default (modifiers) => {
   }
 
   const dispatch = event => {
-    const newState = modifiers(state, event)
+    const newState = model(state, event)
 
     if (!newState) {
       throw new Error('modifiers should always return a value')
