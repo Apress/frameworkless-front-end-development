@@ -6,8 +6,7 @@ import applyDiff from './applyDiff.js'
 
 import registry from './registry.js'
 
-import todosReducer from './model/todos.js'
-import filterReducer from './model/filter.js'
+import reducer from './model/reducer.js'
 
 registry.add('app', appView)
 registry.add('todos', todosView)
@@ -20,14 +19,8 @@ const INITIAL_STATE = {
 }
 
 const {
-  createStore,
-  combineReducers
+  createStore
 } = Redux
-
-const reducer = combineReducers({
-  todos: todosReducer,
-  currentFilter: filterReducer
-})
 
 const store = createStore(
   reducer,

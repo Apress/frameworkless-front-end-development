@@ -25,7 +25,7 @@ export default (model) => {
     const newState = model(state, event)
 
     if (!newState) {
-      throw new Error('modifiers should always return a value')
+      throw new Error('model should always return a value')
     }
 
     if (newState === state) {

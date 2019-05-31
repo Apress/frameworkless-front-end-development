@@ -76,12 +76,12 @@ const clearCompleted = (state, event) => {
 }
 
 const modifiers = {
-  ADD_ITEM: addItem,
-  UPDATE_ITEM: updateItem,
-  DELETE_ITEM: deleteItem,
-  TOGGLE_COMPLETED: toggleItemCompleted,
-  COMPLETE_ALL: completeAll,
-  CLEAR_COMPLETED: clearCompleted
+  ITEM_ADDED: addItem,
+  ITEM_UPDATED: updateItem,
+  ITEM_DELETED: deleteItem,
+  ITEMS_COMPLETED_TOGGLED: toggleItemCompleted,
+  ITEMS_MARKED_AS_COMPLETED: completeAll,
+  COMPLETED_ITEM_DELETED: clearCompleted
 }
 
 export default (prevState, event) => {

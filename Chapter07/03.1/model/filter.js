@@ -3,7 +3,7 @@ const changeFilter = (state, event) => {
 }
 
 const modifiers = {
-  CHANGE_FILTER: changeFilter
+  FILTER_CHANGED: changeFilter
 }
 
 export default (prevState, event) => {

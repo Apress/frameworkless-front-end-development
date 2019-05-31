@@ -1,7 +1,7 @@
 const TEMPLATE = '<ul class="todo-list"></ul>'
 
 export const EVENTS = {
-  DELETE_ITEM: 'DELETE_ITEM'
+  ITEM_DELETED: 'ITEM_DELETED'
 }
 
 export default class List extends HTMLElement {
@@ -25,7 +25,7 @@ export default class List extends HTMLElement {
 
   onDeleteClick (index) {
     const event = new CustomEvent(
-      EVENTS.DELETE_ITEM,
+      EVENTS.ITEM_DELETED,
       {
         detail: {
           index: parseInt(index, 10)

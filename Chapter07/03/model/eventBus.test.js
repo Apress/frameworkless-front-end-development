@@ -1,7 +1,7 @@
 import eventBusFactory from './eventBus'
 let eventBus
 
-const counterModifiers = (state, event) => {
+const counterModel = (state, event) => {
   if (!event) {
     return {
       counter: 0
@@ -19,10 +19,10 @@ const counterModifiers = (state, event) => {
 
 describe('eventBus', () => {
   beforeEach(() => {
-    eventBus = eventBusFactory(counterModifiers)
+    eventBus = eventBusFactory(counterModel)
   })
 
-  test('subscribers should be invoked when a modifiers catch the event', () => {
+  test('subscribers should be invoked when the model catch the event', () => {
     let counter = 0
 
     eventBus.subscribe(() => counter++)
@@ -32,7 +32,7 @@ describe('eventBus', () => {
     expect(counter).toBe(1)
   })
 
-  test('subscribers should not be invoked when a modifiers does not catch the event', () => {
+  test('subscribers should not be invoked when the model does not catch the event', () => {
     let counter = 0
 
     eventBus.subscribe(() => counter++)
@@ -51,7 +51,7 @@ describe('eventBus', () => {
     })
   })
 
-  test('should throw error in a modifiers does not return a state', () => {
+  test('should throw error in the model does not return a state', () => {
     const eventBus = eventBusFactory(() => {
       return undefined
     })

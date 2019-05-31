@@ -14,8 +14,8 @@ registry.add('todos', todosView)
 registry.add('counter', counterView)
 registry.add('filters', filtersView)
 
-const modifiers = modelFactory()
-const eventBus = eventBusFactory(modifiers)
+const model = modelFactory()
+const eventBus = eventBusFactory(model)
 
 const render = (state) => {
   window.requestAnimationFrame(() => {

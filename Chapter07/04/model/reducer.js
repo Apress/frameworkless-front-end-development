@@ -1,12 +1,3 @@
-const cloneDeep = x => {
-  return JSON.parse(JSON.stringify(x))
-}
-
-const INITIAL_STATE = {
-  todos: [],
-  currentFilter: 'All'
-}
-
 const addItem = (state, event) => {
   const text = event.payload
   if (!text) {
@@ -119,18 +110,12 @@ const methods = {
   FILTER_CHANGED: changeFilter
 }
 
-export default (initalState = INITIAL_STATE) => {
-  return (prevState, event) => {
-    if (!prevState) {
-      return cloneDeep(initalState)
-    }
+export default (prevState, event) => {
+  const currentModifier = methods[event.type]
 
-    const currentModifier = methods[event.type]
-
-    if (!currentModifier) {
-      return prevState
-    }
-
-    return currentModifier(prevState, event)
+  if (!currentModifier) {
+    return prevState
   }
+
+  return currentModifier(prevState, event)
 }

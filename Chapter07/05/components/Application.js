@@ -61,7 +61,7 @@ export default class App extends HTMLElement {
 
       this.list = this.querySelector('todomvc-list')
       this.list.addEventListener(
-        EVENTS.DELETE_ITEM,
+        EVENTS.ITEM_DELETED,
         e => {
           this.deleteItem(e.detail.index)
         }
