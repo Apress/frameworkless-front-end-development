@@ -1,4 +1,4 @@
-const EVENT_TYPES = Object.freeze({
+const ACTION_TYPES = Object.freeze({
   ITEM_ADDED: 'ITEM_ADDED',
   ITEM_UPDATED: 'ITEM_UPDATED',
   ITEM_DELETED: 'ITEM_DELETED',
@@ -10,32 +10,32 @@ const EVENT_TYPES = Object.freeze({
 
 export default {
   addItem: text => ({
-    type: EVENT_TYPES.ITEM_ADDED,
+    type: ACTION_TYPES.ITEM_ADDED,
     payload: text
   }),
   updateItem: (index, text) => ({
-    type: EVENT_TYPES.ITEM_UPDATED,
+    type: ACTION_TYPES.ITEM_UPDATED,
     payload: {
       text,
       index
     }
   }),
   deleteItem: index => ({
-    type: EVENT_TYPES.ITEM_DELETED,
+    type: ACTION_TYPES.ITEM_DELETED,
     payload: index
   }),
   toggleItemCompleted: index => ({
-    type: EVENT_TYPES.ITEMS_COMPLETED_TOGGLED,
+    type: ACTION_TYPES.ITEMS_COMPLETED_TOGGLED,
     payload: index
   }),
   completeAll: () => ({
-    type: EVENT_TYPES.ITEMS_MARKED_AS_COMPLETED
+    type: ACTION_TYPES.ITEMS_MARKED_AS_COMPLETED
   }),
   clearCompleted: () => ({
-    type: EVENT_TYPES.COMPLETED_ITEM_DELETED
+    type: ACTION_TYPES.COMPLETED_ITEM_DELETED
   }),
   changeFilter: filter => ({
-    type: EVENT_TYPES.FILTER_CHANGED,
+    type: ACTION_TYPES.FILTER_CHANGED,
     payload: filter
   })
 }
