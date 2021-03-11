@@ -24,9 +24,7 @@ const getTodoElement = (todo, index) => {
 
   if (completed) {
     element.classList.add('completed')
-    element
-      .querySelector('input.toggle')
-      .checked = true
+    element.querySelector('input.toggle').checked = true
   }
 
   element
@@ -37,8 +35,7 @@ const getTodoElement = (todo, index) => {
   return element
 }
 
-export default (targetElement, state, events) => {
-  const { todos } = state
+export default (targetElement, { todos }, events) => {
   const { deleteItem } = events
   const newTodoList = targetElement.cloneNode(true)
 
