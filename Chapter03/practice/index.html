@@ -6,11 +6,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-app-css@2.1.2/index.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js"></script>
     <title>
-        Frameworkless Frontend Development: Rendering
+        Frameworkless Frontend Development: DOM Events
     </title>
 </head>
 
 <body>
+    <template id="todo-item">
+        <li>
+            <div class="view">
+                <input class="toggle" type="checkbox">
+                <label></label>
+                <button class="destroy"></button>
+            </div>
+            <input class="edit">
+        </li>
+    </template>
     <section class="todoapp">
         <header class="header">
             <h1>todos</h1>
