@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-common@1.0.5/base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-app-css@2.1.2/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js"></script>
+    <title>
+        Frameworkless Frontend Development: Rendering
+    </title>
+</head>
+
+<body>
+    <section class="todoapp">
+        <header class="header">
+            <h1>todos</h1>
+            <input 
+                class="new-todo" 
+                placeholder="What needs to be done?" 
+                autofocus>
+        </header>
+        <section class="main">
+            <input 
+                id="toggle-all" 
+                class="toggle-all" 
+                type="checkbox">
+            <label for="toggle-all">
+                Mark all as complete
+            </label>
+            <ul class="todo-list" data-component="todos">
+            </ul>
+        </section>
+        <footer class="footer">
+            <span 
+                class="todo-count" 
+                data-component="counter">
+                    1 Item Left
+            </span>
+            <ul class="filters" data-component="filters">
+                <li>
+                    <a href="#/">All</a>
+                </li>
+                <li>
+                    <a href="#/active">Active</a>
+                </li>
+                <li>
+                    <a href="#/completed">Completed</a>
+                </li>
+            </ul>
+            <button class="clear-completed">
+                Clear completed
+            </button>
+        </footer>
+    </section>
+    <footer class="info">
+        <p>Double-click to edit a todo</p>
+        <p>Created by <a href="http://twitter.com/thestrazz86">Francesco Strazzullo</a></p>
+        <p>Thanks to <a href="http://todomvc.com">TodoMVC</a></p>
+    </footer>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
